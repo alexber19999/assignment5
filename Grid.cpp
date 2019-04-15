@@ -1,9 +1,9 @@
 #include "Grid.h"
 
-std::vector<std::vector<double> > Grid::parseFile(std::string fileName) {
+std::vector<std::vector<float> > Grid::parseFile(std::string fileName) {
 
-        std::vector<double> lineParsed;
-        std::vector<std::vector<double> > fileParsed;
+        std::vector<float> lineParsed;
+        std::vector<std::vector<float> > fileParsed;
 
         std::ifstream infile;
         infile.open(fileName.c_str());

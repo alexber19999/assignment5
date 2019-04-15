@@ -5,6 +5,6 @@
 #include <sstream>
 class Grid {
 public:
-    std::vector<std::vector<double> > parseFile(std::string fileName);
+    std::vector<std::vector<float> > parseFile(std::string fileName);
 
 };
