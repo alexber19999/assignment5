@@ -18,7 +18,10 @@ std::vector<std::vector<float> > Grid::parseFile(std::string fileName) {
                     float temp = std::atof(s.c_str());
                     lineParsed.push_back(temp);
                 }
-                fileParsed.push_back(lineParsed);
+                if(lineParsed.size() != 2){
+                    fileParsed.push_back(lineParsed);
+                }
+
                 lineParsed.clear();
 
             }
