@@ -7,6 +7,115 @@
  * vector[1] = colNumber
  * */
 
+std::vector<std::vector<int> > getNearestNeighbors(std::vector<std::vector<float> > grid, std::vector<int> position){
+    int rowNumber = position[0];
+    int colNumber = position[1];
+
+    int current = grid[rowNumber][colNumber];
+
+    std::vector<std::vector<int> > newGrid;
+
+    if(rowNumber == 0 && colNumber == 0){
+        for(int i = rowNumber; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber; j < colNumber + 2; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+
+    } else if(rowNumber == 0 && colNumber == grid[0].size() - 1){
+        for(int i = rowNumber; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j >= colNumber; j--){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber == 0 && colNumber != grid[0].size() - 1){
+        for(int i = rowNumber - 1; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber; j <= colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber != grid.size() - 1 && colNumber == 0){
+        for(int i = rowNumber; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j <= colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber != grid.size() - 1 && colNumber != grid[0].size() - 1){
+        for(int i = rowNumber - 1; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j <= colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber != grid.size() - 1 && colNumber == grid[0].size() - 1){
+        for(int i = rowNumber - 1; i < rowNumber + 2; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j <= colNumber; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber == grid.size() - 1 && colNumber == 0){
+        for(int i = rowNumber - 1; i <= rowNumber; i++){
+            std::vector<int> row;
+            for(int j = colNumber; j <= colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber == grid.size() - 1 && colNumber != grid[0].size() - 1){
+        for(int i = rowNumber - 1; i < rowNumber + 1; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j <= colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    } else if(rowNumber == grid.size() - 1 && colNumber == grid[0].size() - 1){
+        for(int i = rowNumber - 1; i < rowNumber + 1; i++){
+            std::vector<int> row;
+            for(int j = colNumber - 1; j < colNumber + 1; j++){
+                row.push_back(i);
+                row.push_back(j);
+            }
+            newGrid.push_back(row);
+        }
+    }
+
+    return newGrid;
+}
+
+std::vector<int> getLowestPoint(std::vector<std::vector<int> > newGrid, std::vector<std::vector<float> > grid){
+    std::vector<int> lowest = newGrid[0];
+
+    for(int i = 0; i < newGrid.size(); i++){
+        // if the weight on the grid of the newGrid is lower than the currently lowest point
+        if(grid[newGrid[i][0]][newGrid[i][1]] < grid[lowest[0]][lowest[1]]){
+            lowest[0] = newGrid[i][0];
+            lowest[1] = newGrid[i][1];
+        }
+    }
+
+    return lowest;
+}
+
 std::vector<int> checkNearestNeighbors(std::vector<std::vector<float> > grid, std::vector<int> position){
     int rowNumber = position[0];
     int colNumber = position[1];
@@ -16,24 +125,8 @@ std::vector<int> checkNearestNeighbors(std::vector<std::vector<float> > grid, st
     std::vector<int> newPos;
 
     if(rowNumber == 0 && colNumber == 0){
-        int right = grid[rowNumber][colNumber + 1];
-        int below = grid[rowNumber + 1][colNumber];
-        int diag = grid[rowNumber + 1][colNumber + 1];
-
-        int minimum = std::min({right, below, diag, current});
-
-        if(minimum == right){
-            newPos.push_back(rowNumber);
-            newPos.push_back(colNumber + 1);
-        } else if(minimum == below){
-            newPos.push_back(rowNumber + 1);
-            newPos.push_back(colNumber);
-        } else if(minimum == diag){
-            newPos.push_back(rowNumber + 1);
-            newPos.push_back(colNumber + 1);
-        } else {
-            return position;
-        }
+        //getNearestNeighbors
+        //findLowestPoint
 
     } else if(rowNumber == 0 && colNumber == grid[0].size() - 1){
         int left = grid[rowNumber][colNumber  - 1];
