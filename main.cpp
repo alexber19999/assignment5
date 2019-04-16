@@ -124,84 +124,8 @@ std::vector<int> checkNearestNeighbors(std::vector<std::vector<float> > grid, st
 
     std::vector<int> newPos;
 
-    if(rowNumber == 0 && colNumber == 0){
-        //getNearestNeighbors
-        //findLowestPoint
-
-    } else if(rowNumber == 0 && colNumber == grid[0].size() - 1){
-        int left = grid[rowNumber][colNumber  - 1];
-        int below = grid[rowNumber + 1][colNumber];
-        int diag = grid[rowNumber + 1][colNumber - 1];
-
-        int minimum = std::min({left, below, diag, current});
-
-        if(minimum == left){
-            newPos.push_back(rowNumber);
-            newPos.push_back(colNumber - 1);
-        } else if(minimum == below){
-            newPos.push_back(rowNumber + 1);
-            newPos.push_back(colNumber);
-        } else if(minimum = diag){
-            newPos.push_back(rowNumber + 1);
-            newPos.push_back(colNumber - 1);
-        } else {
-            return position;
-        }
-
-    } else if(rowNumber == 0 && colNumber != grid[0].size() - 1){
-
-    } else if(rowNumber != grid.size() - 1 && colNumber == 0){
-
-    } else if(rowNumber != grid.size() - 1 && colNumber != grid[0].size() - 1){
-        int upperLeft = grid[rowNumber - 1][colNumber - 1];
-        int upperMid = grid[rowNumber - 1][colNumber];
-        int upperRight = grid[rowNumber - 1][colNumber + 1];
-        int left = grid[rowNumber][colNumber - 1];
-        int
-    } else if(rowNumber != grid.size() - 1 && colNumber == grid[0].size() - 1){
-
-    } else if(rowNumber == grid.size() - 1 && colNumber == 0){
-        int right = grid[rowNumber][colNumber + 1];
-        int above = grid[rowNumber - 1][colNumber];
-        int diag = grid[rowNumber - 1][colNumber + 1];
-
-        int minimum = std::min({right, below, diag, current});
-
-        if(minimum == right){
-            newPos.push_back(rowNumber);
-            newPos.push_back(colNumber + 1);
-        } else if(minimum == above){
-            newPos.push_back(rowNumber - 1);
-            newPos.push_back(colNumber);
-        } else if(minimum == diag){
-            newPos.push_back(rowNumber - 1);
-            newPos.push_back(colNumber + 1);
-        } else {
-            return position;
-        }
-    } else if(rowNumber == grid.size() - 1 && colNumber != grid[0].size() - 1){
-
-    } else if(rowNumber == grid.size() - 1 && colNumber == grid[0].size() - 1){
-        int left = grid[rowNumber][colNumber  - 1];
-        int above = grid[rowNumber - 1][colNumber];
-        int diag = grid[rowNumber - 1][colNumber - 1];
-
-        int minimum = std::min({left, above, diag, current});
-
-        if(minimum == left){
-            newPos.push_back(rowNumber);
-            newPos.push_back(colNumber - 1);
-        } else if(minimum == above){
-            newPos.push_back(rowNumber - 1);
-            newPos.push_back(colNumber);
-        } else if(minimum == diag){
-            newPos.push_back(rowNumber - 1);
-            newPos.push_back(colNumber - 1);
-        } else {
-            return positon;
-        }
-    }
-
+    std::vector<std::vector<int> > newGrid = getNearestNeighbors(grid, position);
+    newPos = getLowestPoint(newGrid, grid);
     return newPos;
 }
 
