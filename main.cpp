@@ -229,7 +229,6 @@ int main(int argc, char *argv[]){
         numChildren++;
         p = fork();
         if(p == 0){
-            std::cout << "HERE" << std::endl;
             std::vector<int> start = {randomRow, randomCol};
             std::vector<int> min = getLocalMinimum(fileGrid, start);
             outfile << "Local Minimum: ";
